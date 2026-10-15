@@ -1,0 +1,9 @@
+# Secrets + local uploads — never commit
+config.mail.php
+.installed
+uploads/profile/*
+uploads/resumes/*
+uploads/projects/*
+uploads/blog/*
+uploads/avatars/*
+!uploads/.htaccess

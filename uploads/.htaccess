@@ -1,0 +1,6 @@
+Options -Indexes
+# Never execute scripts from uploads (defense in depth — files are
+# served as static content only).
+<FilesMatch "\.(php|phtml|phar|pl|cgi)$">
+  Require all denied
+</FilesMatch>
