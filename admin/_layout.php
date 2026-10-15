@@ -45,7 +45,14 @@ function admin_head($title) {
 @keyframes wslide{0%{margin-left:-40%}100%{margin-left:100%}}
 @media (prefers-reduced-motion:reduce){.welcome-loader .bot,.welcome-loader .loadbar>span{animation:none}.welcome-loader{transition:none}}
 </style></head>
-<body>
+<body class="admin-3d">
+<!-- Full-page animated 3D background for admin (mouse-follow, global) -->
+<canvas class="bg3d-canvas" data-bg3d aria-hidden="true"></canvas>
+<div class="bg-glow" aria-hidden="true"></div>
+<div class="bg-stars" aria-hidden="true"></div>
+<span class="admin-orb a1" aria-hidden="true"></span>
+<span class="admin-orb a2" aria-hidden="true"></span>
+<span class="admin-orb a3" aria-hidden="true"></span>
 <?php if ($welcome): ?>
 <!-- Loading screen after login: greets the user, then fades out -->
 <div class="welcome-loader" data-welcome role="status" aria-live="polite" aria-label="Loading dashboard">
@@ -103,6 +110,7 @@ function admin_head($title) {
 function admin_foot() { ?>
 </div></div></div></section></main>
 <script src="../assets/js/main.js" defer></script>
+<script src="../assets/js/bg-3d.js" defer></script>
 <script>
   // highlight current side link
   var here = location.pathname.split('/').pop() || 'index.php';

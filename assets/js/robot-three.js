@@ -143,11 +143,10 @@
     var li = 0;
 
     window.addEventListener('pointermove', function (ev) {
-      var r = canvas.getBoundingClientRect();
-      if (ev.clientX >= r.left && ev.clientX <= r.right && ev.clientY >= r.top && ev.clientY <= r.bottom) {
-        pointer.x = ((ev.clientX - r.left) / r.width - 0.5) * 2;
-        pointer.y = ((ev.clientY - r.top) / r.height - 0.5) * 2;
-      }
+      // Global tracking: hero robot follows the mouse anywhere on the page,
+      // not just when hovering the canvas (full-page follow effect).
+      pointer.x = (ev.clientX / window.innerWidth - 0.5) * 2;
+      pointer.y = (ev.clientY / window.innerHeight - 0.5) * 2;
     }, { passive: true });
 
     function doWave() {

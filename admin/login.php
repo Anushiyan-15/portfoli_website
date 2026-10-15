@@ -70,10 +70,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 .loader p{color:var(--muted);font-weight:600;margin:0}
 @media (prefers-reduced-motion:reduce){.orb,.bot,.loadbar>span{animation:none}}
 </style></head>
-<body>
+<body class="admin-3d">
 <a class="skip-link" href="#login-form">Skip to login</a>
+<!-- Full-page animated 3D background (mouse-follow, global) -->
+<canvas class="bg3d-canvas" data-bg3d aria-hidden="true"></canvas>
 <div class="bg-glow" aria-hidden="true"></div>
 <div class="bg-stars" aria-hidden="true"></div>
+<span class="admin-orb a1" aria-hidden="true"></span>
+<span class="admin-orb a2" aria-hidden="true"></span>
+<span class="admin-orb a3" aria-hidden="true"></span>
 
 <main class="login-page"><div class="wrap login-shell">
   <!-- Left: interactive 3D robot stage -->
@@ -120,6 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 <script src="../assets/js/main.js" defer></script>
+<script src="../assets/js/bg-3d.js" defer></script>
 <script src="../assets/js/robot-three.js" defer></script>
 <script>
 (function () {

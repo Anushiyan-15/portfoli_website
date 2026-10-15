@@ -73,6 +73,8 @@ $photo = !empty($profile['photo_path']) ? e($profile['photo_path']) : '';
 </script>
 </head>
 <body>
+<!-- Full-page 3D background: particle field + shapes follow the mouse globally -->
+<canvas class="bg3d-canvas" data-bg3d aria-hidden="true"></canvas>
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="bg-glow" aria-hidden="true"></div>
 <div class="bg-stars" aria-hidden="true"></div>
@@ -131,7 +133,7 @@ $photo = !empty($profile['photo_path']) ? e($profile['photo_path']) : '';
         <div class="stage-actions">
           <button class="icon-btn" id="robot-wave" type="button" aria-label="Ask robot to wave">👋</button>
         </div>
-        <span class="stage-hint" data-stage-hint>Loading 3D…</span>
+        <span class="stage-hint" data-stage-hint>Loading 3D… follows your mouse anywhere on the page</span>
       </div>
     </div>
   </div>
@@ -371,6 +373,7 @@ $photo = !empty($profile['photo_path']) ? e($profile['photo_path']) : '';
 </footer>
 
 <script src="assets/js/main.js" defer></script>
+<script src="assets/js/bg-3d.js" defer></script>
 <script src="assets/js/robot-three.js" defer></script>
 <script>
   // Wave button triggers the same robot greeting (works even before Three loads).

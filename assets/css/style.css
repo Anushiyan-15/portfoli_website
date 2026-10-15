@@ -32,7 +32,28 @@ a{color:var(--accent)}
 .bg-glow{position:fixed;inset:0;z-index:-3;pointer-events:none;
   background:radial-gradient(700px 380px at 85% -5%,rgba(139,92,246,.28),transparent 60%),radial-gradient(640px 420px at -10% 30%,rgba(34,211,238,.16),transparent 60%)}
 [data-theme="light"] .bg-stars{opacity:.12}
+/* Full-page 3D background canvas (bg-3d.js). Fixed behind content,
+   follows the mouse globally. Content layers sit above it. */
+.bg3d-canvas{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;pointer-events:none;opacity:.9}
+[data-theme="light"] .bg3d-canvas{opacity:.55}
+/* Keep content above the fixed background (nav keeps its sticky rule). */
+.wrap,main,footer.site{position:relative;z-index:1}
+/* ---- admin full-3D theme ---- */
+.admin-3d .card{backdrop-filter:blur(10px)}
+.admin-orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(1px);opacity:.55;animation:float 9s ease-in-out infinite}
+.admin-orb.a1{width:150px;height:150px;left:-40px;top:12%;background:radial-gradient(circle at 30% 30%,#22d3ee,transparent 70%)}
+.admin-orb.a2{width:200px;height:200px;right:-50px;top:48%;background:radial-gradient(circle at 30% 30%,#8b5cf6,transparent 70%);animation-delay:2s}
+.admin-orb.a3{width:110px;height:110px;left:38%;bottom:-30px;background:radial-gradient(circle at 30% 30%,#f0abfc,transparent 70%);animation-delay:4s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+@media (prefers-reduced-motion:reduce){.admin-orb{animation:none}.bg3d-canvas{display:none}}
 .wrap{max-width:1140px;margin:0 auto;padding:0 18px}
+/* ---------- fit-screen: every section fills the viewport on scroll ---------- */
+html{scroll-snap-type:y proximity}
+main > header.hero,main > section.block{scroll-snap-align:start;scroll-margin-top:var(--nav-h)}
+main{min-height:calc(100vh - var(--nav-h));min-height:calc(100dvh - var(--nav-h))}
+body{overflow-x:clip}
+img,canvas,pre{max-width:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-snap-type:none}}
 /* ---------- nav ---------- */
 .nav{position:sticky;top:0;z-index:100;height:var(--nav-h);backdrop-filter:blur(14px);
   background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
@@ -52,8 +73,8 @@ a{color:var(--accent)}
   .menu-btn{display:inline-block}
 }
 /* ---------- hero ---------- */
-.hero{position:relative;overflow:hidden;padding:56px 0 30px}
-.hero-grid{display:grid;gap:26px;align-items:center}
+.hero{position:relative;overflow:hidden;padding:56px 0 30px;min-height:calc(100vh - var(--nav-h));min-height:calc(100dvh - var(--nav-h));display:flex;align-items:center}
+.hero-grid{display:grid;gap:26px;align-items:center;width:100%}
 @media(min-width:920px){.hero-grid{grid-template-columns:1.05fr .95fr}.hero{padding:84px 0 50px}}
 .eyebrow{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--line);border-radius:999px;
   padding:.32rem .8rem;font-size:.82rem;color:var(--muted);background:color-mix(in srgb,var(--card) 80%,transparent)}
